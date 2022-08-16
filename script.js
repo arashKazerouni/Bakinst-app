@@ -44,7 +44,7 @@ const labelSumOut = document.querySelector('.summary__value--out');
 const labelSumInterest = document.querySelector('.summary__value--interest');
 const labelTimer = document.querySelector('.timer');
 
-const containerApp = document.querySelector('.app');
+let containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
 
 const btnLogin = document.querySelector('.login__btn');
@@ -61,8 +61,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const getFirstLetters = function (str) {
+  const firstLetters = str
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toLowerCase();
+  return firstLetters;
+};
+const displayMovements = (movements) => {
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}€</div>
+    </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin',html)
+  });
+};
+displayMovements(account1.movements);
 
-// displayMovements();
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -76,13 +98,12 @@ const currencies = new Map([
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-// let arr = ['a', 'b', 'c', 'd', 'e'];
+let arr = ['a', 'b', 'c', 'd', 'e'];
 // console.log(arr.slice(1,3));
 // console.log(arr.splice(1,3));
 // console.log(arr);
 
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // for (const movement of movements){
 //   if(movement > 0){
 //     console.log(`you deposited ${movement}`);
@@ -100,10 +121,10 @@ const currencies = new Map([
 
 //   }
 // })
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // PIPELINE
 const totalDeposite = movements
-.filter((mov)=> mov>0)
-.map(mov => mov * 1.1)
-.reduce((acc,cur)=> acc + cur, 0);
+  .filter(mov => mov > 0)
+  .map(mov => mov * 1.1)
+  .reduce((acc, cur) => acc + cur, 0);
 console.log(totalDeposite);
