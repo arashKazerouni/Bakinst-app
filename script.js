@@ -61,14 +61,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const getFirstLetters = function (str) {
-  const firstLetters = str
-    .split(' ')
-    .map(word => word[0])
-    .join('')
-    .toLowerCase();
-  return firstLetters;
-};
 const displayMovements = movements => {
   movements.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -85,6 +77,17 @@ const displayMovements = movements => {
 };
 displayMovements(account1.movements);
 
+const createUserName = function (accs) {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toLowerCase();
+  });
+};
+createUserName(accounts)
+console.log(account1);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -128,17 +131,3 @@ const totalDeposite = movements
   .map(mov => mov * 1.1)
   .reduce((acc, cur) => acc + cur, 0);
 // console.log(totalDeposite);
-
-// code challange one
-const checkDogs = (dogsJulia, dogsKate) => {
-  const dogsJuliaClone = [...dogsJulia];
-  dogsJuliaClone.splice(-2) && dogsJuliaClone.shift();
-  const bothArrays = [...dogsJuliaClone, ...dogsKate];
-  bothArrays.forEach((age, i) => {
-    const type =
-      age > 3 ? `an adult, and is ${age} years old` : `still a puppy🐶`;
-    const text = `Dog number ${i + 1} is ${type}.`;
-    console.log(text);;
-  });
-};
-console.log(checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]));
