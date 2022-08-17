@@ -69,7 +69,7 @@ const getFirstLetters = function (str) {
     .toLowerCase();
   return firstLetters;
 };
-const displayMovements = (movements) => {
+const displayMovements = movements => {
   movements.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
@@ -80,7 +80,7 @@ const displayMovements = (movements) => {
       <div class="movements__value">${mov}€</div>
     </div>
     `;
-    containerMovements.insertAdjacentHTML('afterbegin',html)
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 displayMovements(account1.movements);
@@ -127,4 +127,18 @@ const totalDeposite = movements
   .filter(mov => mov > 0)
   .map(mov => mov * 1.1)
   .reduce((acc, cur) => acc + cur, 0);
-console.log(totalDeposite);
+// console.log(totalDeposite);
+
+// code challange one
+const checkDogs = (dogsJulia, dogsKate) => {
+  const dogsJuliaClone = [...dogsJulia];
+  dogsJuliaClone.splice(-2) && dogsJuliaClone.shift();
+  const bothArrays = [...dogsJuliaClone, ...dogsKate];
+  bothArrays.forEach((age, i) => {
+    const type =
+      age > 3 ? `an adult, and is ${age} years old` : `still a puppy🐶`;
+    const text = `Dog number ${i + 1} is ${type}.`;
+    console.log(text);;
+  });
+};
+console.log(checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]));
