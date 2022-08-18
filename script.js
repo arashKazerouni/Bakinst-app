@@ -75,7 +75,6 @@ const displayMovements = movements => {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 const createUserName = function (accs) {
   accs.forEach(acc => {
@@ -86,8 +85,25 @@ const createUserName = function (accs) {
       .toLowerCase();
   });
 };
-createUserName(accounts)
-console.log(account1);
+createUserName(accounts);
+
+const displayApp = () => {
+  accounts.forEach(acc => {
+    if (
+      inputLoginUsername.value === acc.username &&
+      Number(inputLoginPin.value) === acc.pin
+    ) {
+      containerApp.style.opacity = '1';
+      displayMovements(acc.movements)
+    }
+  });
+};
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayApp();
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
