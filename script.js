@@ -76,6 +76,7 @@ const displayMovements = movements => {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+// 
 //========= CREATE USERNAME =========
 const createUserName = function (accs) {
   accs.forEach(acc => {
